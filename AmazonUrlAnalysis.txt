@@ -1,0 +1,61 @@
+Amazon Books: analyzing url.
+
+
+--Harry Potter and the Goblet of Fire
+https://www.amazon.com/s?k=Harry+Potter+and+the+Goblet+of+Fire&i=stripbooks&ref=nb_sb_noss
+
+
+--Mary Poppin in Book Department
+https://www.amazon.com/s?k=Mary+Poppins&i=stripbooks&ref=nb_sb_noss
+
+
+--9780142408889
+https://www.amazon.com/s?k=9780142408889&i=stripbooks&ref=nb_sb_noss
+
+
+--Curious George visits a police station
+https://www.amazon.com/s?k=Curious+George+visits+a+police+station&i=stripbooks&ref=nb_sb_noss_2
+
+
+--url set up:
+base_url = "https://www.amazon.com/s?k="
+
+keyword = "whatever you want to search"
+mid_url = keyword.replace(" ", "+") --dynamic and must include + for every space
+
+end_url = "&i=stripbooks&ref=nb_sb_noss"
+
+book_url = beg_url + mid_url + end_url
+
+
+--url must allow "_2" for broader search. Below is a snippet example.
+Use CrawlSpider to simplify this link extraction.
+
+
+--Requirements:
+from scrapy.spiders import CrawlSpider, Rule
+from scrapy.linkextractor import LinExtractor
+
+Class SpiderSpider(CrawlSpider):
+	name = 'spider'
+
+	allowed_domains = ['amazon.com']
+
+	start_urls = [https://www.amazon.com/]
+
+	base_url = "https://www.amazon.com/s?k="
+
+	keyword = "whatever you want to search" --You can feed the spider a list and execute the spider to loop through each keyword.
+	mid_url = keyword.replace(" ", "+") --dynamic and must include + for every space
+
+	end_url = "&i=stripbooks&ref=nb_sb_noss"
+
+	book_url = beg_url + mid_url + end_url --This is what you want the spider to iterate through. Each book_url will be different based on your keyword.
+
+	rules = [Rule(LinkExtractor(allow="_2"), callback="parse_filter_book", follow=True)]
+
+
+	def parse_filter_book(self, response):
+	"""Your parsing rules for the page goes here."""
+
+

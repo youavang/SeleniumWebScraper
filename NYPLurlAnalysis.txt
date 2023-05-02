@@ -1,0 +1,30 @@
+NYPL Catalog search: analyzing url.
+
+
+--Harry Potter and the Goblet
+https://browse.nypl.org/iii/encore/record/C__Rb21610027__SHarry%20Potter%20and%20the%20Goblet__Orightresult__U__X6?lang=eng&suite=def  --why different?/ unable to replicate
+
+
+--Mary Poppin
+https://browse.nypl.org/iii/encore/search/C__SMary%20Poppin__Orightresult__U?lang=eng&suite=def
+
+
+--9780142408889
+https://browse.nypl.org/iii/encore/search/C__S9780142408889__Orightresult__U?lang=eng&suite=def
+
+
+--Curious George visits a police station
+https://browse.nypl.org/iii/encore/search/C__SCurious%20George%20visits%20a%20police%20station__Orightresult__U?lang=eng&suite=def
+
+
+--url set up
+beg_url = "https://browse.nypl.org/iii/encore/search/C__S"
+
+mid_url = keyword.replace(" ", "%20") --dynamic and must include %20 for every space
+
+end_url = "__Orightresult__U?lang=eng&suite=def"
+
+url = beg_url + mid_url + end_url
+
+
+
